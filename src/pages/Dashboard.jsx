@@ -170,7 +170,10 @@ const Dashboard = () => {
       const res = await goalsAPI.create({
         title: newGoal.title.trim(),
         targetAmount: target,
-        deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // Default to 30 days
+        deadline: new Date(
+          Date.now() + 30 * 24 * 60 * 60 * 1000
+        ).toISOString().split("T")[0],
+        category: "other",
       });
       if (res.data?.success) {
         await loadDashboard(); // Reload from backend

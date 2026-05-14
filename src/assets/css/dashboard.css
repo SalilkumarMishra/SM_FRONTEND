@@ -11,13 +11,13 @@
   --bg-main: #040813;
   --bg-surface: rgba(255, 255, 255, 0.03);
   --bg-sidebar: #040813;
-  --accent-teal: #14f195;
-  --accent-teal-dark: #0db36e;
+  --accent-teal: #8DFF00;
+  --accent-teal-dark: #6BCC00;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.45);
   --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-accent: rgba(20, 241, 149, 0.2);
+  --border-accent: rgba(141, 255, 0, 0.2);
 
   /* ── Spacing Scale ── */
   --sp-1: 8px;
@@ -139,7 +139,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
     ),
     radial-gradient(
       circle at center,
-      rgba(20, 241, 149, 0.05) 0%,
+      rgba(141, 255, 0, 0.05) 0%,
       transparent 40%
     );
   pointer-events: none;
@@ -268,7 +268,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .nav-link.active {
-  background: rgba(20, 241, 149, 0.05);
+  background: rgba(141, 255, 0, 0.05);
   color: var(--accent-teal);
 }
 
@@ -496,7 +496,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 
 .db-balance-pill__add:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(20, 241, 149, 0.3);
+  box-shadow: 0 0 15px rgba(141, 255, 0, 0.3);
 }
 
 .db-balance-pill__add:active {
@@ -601,9 +601,9 @@ h1, h2, h3, h4, .db-sidebar__logo {
   padding: var(--sp-16) var(--sp-8);
   text-align: center;
   gap: var(--sp-5);
-  border: 1.5px dashed rgba(20, 241, 149, 0.2);
+  border: 1.5px dashed rgba(141, 255, 0, 0.2);
   border-radius: var(--radius-lg);
-  background: rgba(20, 241, 149, 0.04);
+  background: rgba(141, 255, 0, 0.04);
 }
 
 .db-empty-state__icon {
@@ -697,7 +697,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
-  background: rgba(20, 241, 149, 0.06);
+  background: rgba(141, 255, 0, 0.06);
   border-radius: var(--radius-md);
   overflow: hidden;
   padding: 2px;
@@ -715,7 +715,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .db-goal-card__amt:hover {
-  background: rgba(20, 241, 149, 0.08);
+  background: rgba(141, 255, 0, 0.08);
 }
 
 .db-goal-card__amt-label {
@@ -764,14 +764,14 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .badge-success {
-  background: rgba(20, 241, 149, 0.15);
+  background: rgba(141, 255, 0, 0.15);
   color: var(--accent-teal);
-  border-color: rgba(20, 241, 149, 0.4);
+  border-color: rgba(141, 255, 0, 0.4);
 }
 
 .badge-success:hover {
-  background: rgba(20, 241, 149, 0.22);
-  border-color: rgba(20, 241, 149, 0.6);
+  background: rgba(141, 255, 0, 0.22);
+  border-color: rgba(141, 255, 0, 0.6);
 }
 
 .badge-warning {
@@ -850,7 +850,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--border-accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(20, 241, 149, 0.2);
+  box-shadow: 0 8px 20px rgba(141, 255, 0, 0.2);
 }
 
 .btn-secondary:active:not(:disabled) {
@@ -962,8 +962,8 @@ h1, h2, h3, h4, .db-sidebar__logo {
   align-items: center;
   gap: var(--sp-3);
   padding: var(--sp-4) var(--sp-6);
-  background: rgba(20, 241, 149, 0.06);
-  border-bottom: 1px solid rgba(20, 241, 149, 0.15);
+  background: rgba(141, 255, 0, 0.06);
+  border-bottom: 1px solid rgba(141, 255, 0, 0.15);
 }
 
 .db-modal__goal-icon {
@@ -1039,7 +1039,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   outline: none;
   border-color: var(--accent-teal);
   background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 0 3px rgba(20, 241, 149, 0.12);
+  box-shadow: 0 0 0 3px rgba(141, 255, 0, 0.12);
 }
 
 .form-error {
@@ -1131,9 +1131,9 @@ h1, h2, h3, h4, .db-sidebar__logo {
   justify-content: space-between;
   align-items: center;
   padding: var(--sp-4);
-  background: rgba(20, 241, 149, 0.08);
+  background: rgba(141, 255, 0, 0.08);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(20, 241, 149, 0.15);
+  border: 1px solid rgba(141, 255, 0, 0.15);
 }
 
 .progress-status {
@@ -1184,10 +1184,10 @@ h1, h2, h3, h4, .db-sidebar__logo {
   font-weight: 800;
   color: var(--accent-teal);
   letter-spacing: -0.5px;
-  background: rgba(20, 241, 149, 0.15);
+  background: rgba(141, 255, 0, 0.15);
   padding: 6px 12px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(20, 241, 149, 0.3);
+  border: 1px solid rgba(141, 255, 0, 0.3);
 }
 
 .progress-bar-track {
@@ -1197,7 +1197,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(20, 241, 149, 0.1);
+  border: 1px solid rgba(141, 255, 0, 0.1);
 }
 
 .progress-bar-fill {
@@ -1207,7 +1207,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 16px rgba(20, 241, 149, 0.4);
+  box-shadow: 0 0 16px rgba(141, 255, 0, 0.4);
 }
 
 .progress-bar-fill::after {
@@ -1278,8 +1278,8 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .progress-message.success {
-  background: rgba(20, 241, 149, 0.12);
-  border-color: rgba(20, 241, 149, 0.3);
+  background: rgba(141, 255, 0, 0.12);
+  border-color: rgba(141, 255, 0, 0.3);
   color: var(--accent-teal);
 }
 
@@ -1298,31 +1298,31 @@ h1, h2, h3, h4, .db-sidebar__logo {
 .card:hover {
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(15, 27, 46, 0.7);
-  box-shadow: 0 8px 24px rgba(20, 241, 149, 0.1);
+  box-shadow: 0 8px 24px rgba(141, 255, 0, 0.1);
 }
 
 .card--hero {
   background: linear-gradient(
     135deg,
-    rgba(20, 241, 149, 0.08),
-    rgba(0, 229, 255, 0.08)
+    rgba(141, 255, 0, 0.08),
+    rgba(141, 255, 0, 0.08)
   );
-  border: 1px solid rgba(20, 241, 149, 0.15);
+  border: 1px solid rgba(141, 255, 0, 0.15);
   padding: var(--sp-8);
 }
 
 .card--hero:hover {
   background: linear-gradient(
     135deg,
-    rgba(20, 241, 149, 0.12),
-    rgba(0, 229, 255, 0.12)
+    rgba(141, 255, 0, 0.12),
+    rgba(141, 255, 0, 0.12)
   );
-  border-color: rgba(20, 241, 149, 0.25);
+  border-color: rgba(141, 255, 0, 0.25);
 }
 
 .card--premium {
   background: rgba(15, 27, 46, 0.8);
-  border: 1px solid rgba(20, 241, 149, 0.2);
+  border: 1px solid rgba(141, 255, 0, 0.2);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
@@ -1391,8 +1391,8 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .wallet-stat--deposit:hover {
-  border-color: rgba(34, 197, 94, 0.2);
-  background: rgba(34, 197, 94, 0.05);
+  border-color: rgba(141, 255, 0, 0.2);
+  background: rgba(141, 255, 0, 0.05);
 }
 
 .wallet-stat--withdrawal:hover {
@@ -1416,7 +1416,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .text-success {
-  color: #22c55e;
+  color: #8DFF00;
 }
 
 .text-danger {
@@ -1477,7 +1477,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .transaction-item:hover {
-  background-color: rgba(20, 241, 149, 0.04);
+  background-color: rgba(141, 255, 0, 0.04);
   padding-left: var(--sp-2);
   padding-right: var(--sp-2);
   margin-left: calc(-1 * var(--sp-2));
@@ -1504,9 +1504,9 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .transaction-icon--deposit {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(141, 255, 0, 0.15);
+  color: #8DFF00;
+  border: 1px solid rgba(141, 255, 0, 0.3);
 }
 
 .transaction-icon--withdrawal {
@@ -1540,7 +1540,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .transaction-amount.deposit {
-  color: #22c55e;
+  color: #8DFF00;
 }
 
 .transaction-amount.withdrawal {
@@ -1665,7 +1665,7 @@ h1, h2, h3, h4, .db-sidebar__logo {
   outline: none;
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--accent-teal);
-  box-shadow: 0 0 12px rgba(20, 241, 149, 0.2);
+  box-shadow: 0 0 12px rgba(141, 255, 0, 0.2);
 }
 
 .form-error {
@@ -1680,14 +1680,14 @@ h1, h2, h3, h4, .db-sidebar__logo {
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, #8DFF00, #6BCC00);
   color: white;
   border: none;
 }
 
 .btn-success:hover {
-  background: linear-gradient(135deg, #16a34a, #15803d);
-  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  background: linear-gradient(135deg, #6BCC00, #5AB800);
+  box-shadow: 0 8px 20px rgba(141, 255, 0, 0.3);
   transform: translateY(-2px);
 }
 

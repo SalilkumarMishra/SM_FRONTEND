@@ -277,7 +277,7 @@
   color: var(--accent-teal);
   font-weight: 700;
   letter-spacing: 0;
-  text-shadow: 0 0 20px rgba(20, 241, 149, 0.3);
+  text-shadow: 0 0 20px rgba(141, 255, 0, 0.3);
 }
 
 /* Streak Card - Hidden in Standard Layout */

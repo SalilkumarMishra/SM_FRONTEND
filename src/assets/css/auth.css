@@ -85,8 +85,8 @@
 .form-group input:focus {
   outline: none;
   border-color: var(--accent-teal);
-  background: rgba(20, 241, 149, 0.05);
-  box-shadow: 0 0 0 3px rgba(20, 241, 149, 0.08);
+  background: rgba(141, 255, 0, 0.05);
+  box-shadow: 0 0 0 3px rgba(141, 255, 0, 0.08);
 }
 
 .form-options {

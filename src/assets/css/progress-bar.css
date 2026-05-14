@@ -10,7 +10,7 @@
     rgba(255, 255, 255, 0.05)
   );
   border-radius: 12px;
-  border: 1px solid rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(141, 255, 0, 0.2);
   backdrop-filter: blur(10px);
 }
 
@@ -32,8 +32,8 @@
 }
 
 .progress-status.unlocked {
-  background-color: rgba(76, 175, 80, 0.1);
-  color: #388e3c;
+  background-color: rgba(141, 255, 0, 0.1);
+  color: #6BCC00;
 }
 
 /* Lock/Unlock Icon */
@@ -78,13 +78,13 @@
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(141, 255, 0, 0.15);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4caf50, #45a049);
+  background: linear-gradient(90deg, #8DFF00, #6BCC00);
   width: 0%;
   transition: width 0.5s ease;
   display: flex;
@@ -97,7 +97,7 @@
 
 /* Animated gradient when unlocked */
 .progress-bar-fill.unlocked {
-  background: linear-gradient(90deg, #4caf50, #45a049, #66bb6a, #4caf50);
+  background: linear-gradient(90deg, #8DFF00, #6BCC00, #A5FF33, #8DFF00);
   background-size: 200% 100%;
   animation: progress-shimmer 2s ease-in-out infinite;
 }
@@ -177,7 +177,7 @@
 
 .current-amount {
   font-weight: 700;
-  color: #388e3c;
+  color: #6BCC00;
 }
 
 .separator {
@@ -208,8 +208,8 @@
 /* Unlocked Message */
 .unlock-message {
   padding: 0.75rem;
-  background-color: rgba(76, 175, 80, 0.1);
-  border-left: 3px solid #4caf50;
+  background-color: rgba(141, 255, 0, 0.1);
+  border-left: 3px solid #8DFF00;
   border-radius: 4px;
   animation: slideIn 0.3s ease;
 }
@@ -217,7 +217,7 @@
 .unlocked-text {
   display: block;
   font-size: 0.85rem;
-  color: #388e3c;
+  color: #6BCC00;
   font-weight: 600;
 }
 

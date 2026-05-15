@@ -1,8 +1,7 @@
 import { useAuth } from "../context/AuthContext";
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import {
   transactionsAPI,
-  dashboardAPI,
   cancelWithdrawalAPI,
 } from "../services/api";
 import Layout from "../components/Layout";
@@ -25,32 +24,29 @@ const Wallet = () => {
   const [infoOpen, setInfoOpen] = useState(false);
   const [infoAnchor, setInfoAnchor] = useState(null);
 
-  useEffect(() => {
-    loadWalletData();
-
-    // Listen for storage changes (e.g. from Layout top-up)
-    window.addEventListener("storage", loadWalletData);
-    return () => window.removeEventListener("storage", loadWalletData);
-  }, []);
-
-  const loadWalletData = async () => {
+  const loadWalletData = useCallback(async () => {
     if (!user) return;
     const userId = user.id || user._id;
     const savedBalance = localStorage.getItem(`user_${userId}_walletBalance`);
     setWalletBalance(savedBalance ? JSON.parse(savedBalance) : 5000);
 
     try {
-      const [txRes, dashRes] = await Promise.all([
-        transactionsAPI.getAll(),
-        dashboardAPI.getDashboard(),
-      ]);
+      const txRes = await transactionsAPI.getAll();
       if (txRes.data?.success) {
         setTransactions(txRes.data.data.transactions || []);
       }
     } catch (err) {
       console.error("Failed to fetch wallet/dashboard data:", err);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadWalletData();
+
+    // Listen for storage changes (e.g. from Layout top-up)
+    window.addEventListener("storage", loadWalletData);
+    return () => window.removeEventListener("storage", loadWalletData);
+  }, [loadWalletData]);
 
   const handleAddMoney = async () => {
     const amount = parseFloat(addAmount);

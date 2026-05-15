@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * ProgressBar — Premium animated progress visualization
@@ -23,9 +23,12 @@ const ProgressBar = ({ currentAmount, targetAmount, showAnimation = false }) => 
     prevProgressRef.current = progress;
 
     if (showAnimation && progress >= 80 && prev < 80) {
-      setAnimateUnlock(true);
-      const t = setTimeout(() => setAnimateUnlock(false), 1200);
-      return () => clearTimeout(t);
+      const start = setTimeout(() => setAnimateUnlock(true), 0);
+      const stop = setTimeout(() => setAnimateUnlock(false), 1200);
+      return () => {
+        clearTimeout(start);
+        clearTimeout(stop);
+      };
     }
   }, [progress, showAnimation]);
 

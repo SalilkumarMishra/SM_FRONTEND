@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext";
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { goalsAPI, transactionsAPI } from "../services/api";
 import Layout from "../components/Layout";
 import "../assets/css/dashboard.css";
@@ -12,11 +12,7 @@ const Analytics = () => {
   const [goals, setGoals] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     if (!user) return;
     
     try {
@@ -34,11 +30,15 @@ const Analytics = () => {
     } catch (err) {
       console.error("Failed to fetch analytics data:", err);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    const timer = setTimeout(loadData, 0);
+    return () => clearTimeout(timer);
+  }, [loadData]);
 
   // ── Derived metrics ──
   const totalSavings = goals.reduce((sum, g) => sum + g.currentAmount, 0);
-  const totalTargets = goals.reduce((sum, g) => sum + g.targetAmount, 0);
   const totalDeposited = transactions
     .filter((t) => t.type === "income")
     .reduce((sum, t) => sum + t.amount, 0);

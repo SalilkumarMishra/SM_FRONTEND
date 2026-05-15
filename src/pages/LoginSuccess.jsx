@@ -5,13 +5,11 @@ import { authAPI } from "../services/api";
 const LoginSuccess = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const token = searchParams.get("token");
+  const [error, setError] = useState(token ? "" : "No authentication token received.");
 
   useEffect(() => {
-    const token = searchParams.get("token");
-
     if (!token) {
-      setError("No authentication token received.");
       setTimeout(() => navigate("/login"), 2000);
       return;
     }
@@ -40,7 +38,7 @@ const LoginSuccess = () => {
     };
 
     handleOAuthLogin();
-  }, [searchParams, navigate]);
+  }, [token, navigate]);
 
   return (
     <div className="auth-body">

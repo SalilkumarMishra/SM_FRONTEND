@@ -18,6 +18,7 @@ pipeline {
         IMAGE_NAME = 'savemore-frontend'
         CONTAINER_NAME = 'Savemore'
         HOST_PORT = '8080'
+        DOCKER_AVAILABLE = 'false'
     }
 
     stages {
@@ -28,12 +29,40 @@ pipeline {
         }
 
         stage('Debug Environment') {
+            agent { docker { image 'node:18' } }
             steps {
                 script {
                     runCommand(
-                        'node --version && npm --version && docker --version && docker compose version',
-                        'node --version; npm --version; docker --version; docker compose version'
+                        'node --version && npm --version',
+                        'node --version; npm --version'
                     )
+                    if (isUnix()) {
+                        env.DOCKER_AVAILABLE = sh(
+                            returnStdout: true,
+                            script: 'if command -v docker >/dev/null 2>&1; then echo true; else echo false; fi'
+                        ).trim()
+                        if (env.DOCKER_AVAILABLE == 'true') {
+                            runCommand(
+                                'docker --version && docker compose version',
+                                'docker --version; docker compose version'
+                            )
+                        } else {
+                            echo 'Docker CLI not available on this agent; skipping container stages.'
+                        }
+                    } else {
+                        env.DOCKER_AVAILABLE = powershell(
+                            returnStdout: true,
+                            script: '$docker = Get-Command docker -ErrorAction SilentlyContinue; if ($docker) { "true" } else { "false" }'
+                        ).trim()
+                        if (env.DOCKER_AVAILABLE == 'true') {
+                            runCommand(
+                                'Write-Host "Docker available"',
+                                'docker --version; docker compose version'
+                            )
+                        } else {
+                            echo 'Docker CLI not available on this agent; skipping container stages.'
+                        }
+                    }
                     runCommand(
                         'echo "Workspace: $PWD" && git rev-parse --short HEAD',
                         'Write-Host "Workspace: $PWD"; git rev-parse --short HEAD'
@@ -43,6 +72,7 @@ pipeline {
         }
 
         stage('Install Dependencies') {
+            agent { docker { image 'node:18' } }
             steps {
                 script {
                     runCommand('npm ci')
@@ -51,6 +81,7 @@ pipeline {
         }
 
         stage('Lint') {
+            agent { docker { image 'node:18' } }
             steps {
                 script {
                     runCommand('npm run lint')
@@ -59,6 +90,7 @@ pipeline {
         }
 
         stage('Build App') {
+            agent { docker { image 'node:18' } }
             steps {
                 script {
                     runCommand('npm run build')
@@ -76,6 +108,10 @@ pipeline {
         }
 
         stage('Docker Build') {
+            when {
+                expression { return env.DOCKER_AVAILABLE == 'true' }
+            }
+            agent any
             steps {
                 script {
                     runCommand(
@@ -86,6 +122,10 @@ pipeline {
         }
 
         stage('Deploy Container') {
+            when {
+                expression { return env.DOCKER_AVAILABLE == 'true' }
+            }
+            agent any
             steps {
                 script {
                     runCommand(
@@ -100,6 +140,10 @@ pipeline {
         }
 
         stage('Health Check') {
+            when {
+                expression { return env.DOCKER_AVAILABLE == 'true' }
+            }
+            agent any
             steps {
                 script {
                     runCommand(
@@ -114,10 +158,14 @@ pipeline {
     post {
         always {
             script {
-                runCommand(
-                    "docker ps -a --filter name=${env.CONTAINER_NAME} || true",
-                    "docker ps -a --filter name=${env.CONTAINER_NAME}; if (\$LASTEXITCODE -ne 0) { \$global:LASTEXITCODE = 0 }"
-                )
+                if (env.DOCKER_AVAILABLE == 'true') {
+                    runCommand(
+                        "docker ps -a --filter name=${env.CONTAINER_NAME} || true",
+                        "docker ps -a --filter name=${env.CONTAINER_NAME}; if (\$LASTEXITCODE -ne 0) { \$global:LASTEXITCODE = 0 }"
+                    )
+                } else {
+                    echo 'Docker not available on this agent; skipping container cleanup.'
+                }
             }
         }
         success {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 // import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Layout from "../components/Layout";
@@ -27,15 +27,7 @@ const Dashboard = () => {
   // New goal form state
   const [newGoal, setNewGoal] = useState({ title: "", targetAmount: "" });
 
-  useEffect(() => {
-    loadDashboard();
-
-    // Listen for storage changes (e.g. from Layout top-up)
-    window.addEventListener("storage", loadDashboard);
-    return () => window.removeEventListener("storage", loadDashboard);
-  }, []);
-
-  const loadDashboard = async () => {
+  const loadDashboard = useCallback(async () => {
     if (!user) return;
     const userId = user.id || user._id;
 
@@ -55,7 +47,15 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    loadDashboard();
+
+    // Listen for storage changes (e.g. from Layout top-up)
+    window.addEventListener("storage", loadDashboard);
+    return () => window.removeEventListener("storage", loadDashboard);
+  }, [loadDashboard]);
 
 
   /* ── Helpers ── */

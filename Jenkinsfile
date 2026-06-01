@@ -29,7 +29,7 @@ pipeline {
         }
 
         stage('Debug Environment') {
-            agent { docker { image 'node:18' } }
+            agent any
             steps {
                 script {
                     runCommand(
@@ -72,7 +72,7 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-            agent { docker { image 'node:18' } }
+            agent any
             steps {
                 script {
                     runCommand('npm ci')
@@ -81,7 +81,7 @@ pipeline {
         }
 
         stage('Lint') {
-            agent { docker { image 'node:18' } }
+            agent any
             steps {
                 script {
                     runCommand('npm run lint')
@@ -90,7 +90,7 @@ pipeline {
         }
 
         stage('Build App') {
-            agent { docker { image 'node:18' } }
+            agent any
             steps {
                 script {
                     runCommand('npm run build')
